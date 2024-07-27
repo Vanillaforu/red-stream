@@ -1,0 +1,170 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow-y: auto;
+  height: 80vh;
+  scroll-snap-type: y mandatory;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  scroll-snap-align: start;
+}
+
+.post img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.like-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #ff4500;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.like-button:hover {
+  background-color: #e03e00;
+}
+
+.like-count {
+  margin-top: 5px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.like-animation {
+  position: absolute;
+  font-size: 1.5em;
+  color: red;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s ease;
+  pointer-events: none;
+}
+
+/* 现有CSS基础上添加或修改 */
+.post img {
+  max-width: 100%;
+  /* 确保图片宽度不超过其容器宽度 */
+  height: auto;
+  /* 保持图片宽高比 */
+}
+
+/* 使用媒体查询调整不同屏幕尺寸下的字体大小 */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    /* 较小屏幕使用较小字体 */
+  }
+
+  .post {
+    padding: 10px;
+    /* 减少内边距 */
+  }
+}
+
+@media (min-width: 769px) {
+  body {
+    font-size: 16px;
+    /* 较大屏幕使用较大字体 */
+  }
+
+  .post {
+    padding: 20px;
+    /* 增加内边距 */
+  }
+}
+
+/* 评论按钮样式 */
+.comment-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #0084ff;
+  /* 蓝色背景，表示评论 */
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* 平滑过渡背景颜色变化 */
+}
+
+.comment-button:hover {
+  background-color: #006acc;
+  /* 悬停时颜色变深 */
+}
+
+/* 转发按钮样式 */
+.share-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #3b5998;
+  /* 深蓝色背景，表示转发 */
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* 平滑过渡背景颜色变化 */
+}
+
+.share-button:hover {
+  background-color: #2d4373;
+  /* 悬停时颜色变深 */
+}
+
+/* 评论和转发计数样式 */
+.comment-count,
+.share-count {
+  margin-top: 5px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+/* 评论动画样式 */
+.comment-animation {
+  position: absolute;
+  font-size: 1.5em;
+  color: #0084ff;
+  /* 与评论按钮背景色一致 */
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+/* 转发动画样式 */
+.share-animation {
+  position: absolute;
+  font-size: 1.5em;
+  color: #3b5998;
+  /* 与转发按钮背景色一致 */
+  opacity: 0;
+  transform: translateX(20px);
+  /* 可以是其他方向的动画 */
+  transition: opacity 0.5s ease, transform 0.3s ease;
+  pointer-events: none;
+}
