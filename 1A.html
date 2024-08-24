@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Commerce</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .search-bar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #fff;
+            padding: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .search-bar input {
+            width: calc(100% - 16px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .nav-bar div {
+            flex: 1;
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+            cursor: pointer;
+            padding: 5px 0;
+        }
+        .nav-bar div:hover {
+            background-color: #fee;
+            color: #e74c3c;
+            border-radius: 16px;
+        }
+        .nav-bar .active {
+            background-color: #e74c3c;
+            color: #fff;
+            border-radius: 16px;
+        }
+        .container {
+            column-count: 2;
+            column-gap: 1%;
+            width: 100%;
+            max-width: 600px;
+            margin: 60px auto 60px;
+            padding: 0 10px;
+        }
+        .post {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            break-inside: avoid;
+        }
+        .post img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .post-content {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .post-details {
+            flex-grow: 1;
+        }
+        .post-title {
+            font-size: 16px;
+            margin: 0;
+        }
+        .post-author {
+            font-size: 14px;
+            color: #666;
+            margin: 5px 0;
+        }
+        .like-button {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: #888;
+            margin-left: 10px;
+        }
+        .like-button.liked {
+            color: #e74c3c;
+            animation: like-animation 0.5s ease;
+        }
+        @keyframes like-animation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(1); }
+        }
+        .details {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .details-content {
+            background: #fff;
+            color: #000;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            text-align: left;
+            box-sizing: border-box;
+        }
+        .details-content img {
+            width: 100%;
+            height: auto;
+            margin: 15px 0;
+        }
+        .details-date {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 10px;
+        }
+        .close-button {
+            display: block;
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 20px auto 0;
+            text-align: center;
+            font-size: 16px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                column-count: 2;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="search-bar">
+    <input type="text" placeholder="上班最好的摸鱼方法是写论文？…">
+</div>
+
+<div class="container">
+    <div class="post" data-title="标题1" data-author="用户1" data-content="这是正文内容1" data-image="s1.jpg" data-date="2023-08-22">
+        <img src="s1.jpg" alt="Post Image">
+        <div class="post-content">
+            <div class="post-details">
+                <p class="post-title">标题1</p>
+                <p class="post-author">用户1</p>
+            </div>
+            <div class="like-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="post" data-title="标题1" data-author="用户1" data-content="这是正文内容1" data-image="s2.jpg" data-date="2023-08-22">
+        <img src="s2.jpg" alt="Post Image">
+        <div class="post-content">
+            <div class="post-details">
+                <p class="post-title">标题1</p>
+                <p class="post-author">用户1</p>
+            </div>
+            <div class="like-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="post" data-title="标题1" data-author="用户1" data-content="这是正文内容1" data-image="s3.jpg" data-date="2023-08-22">
+        <img src="s3.jpg" alt="Post Image">
+        <div class="post-content">
+            <div class="post-details">
+                <p class="post-title">标题1</p>
+                <p class="post-author">用户1</p>
+            </div>
+            <div class="like-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="post" data-title="标题1" data-author="用户1" data-content="这是正文内容1" data-image="s4.jpg" data-date="2023-08-22">
+        <img src="s4.jpg" alt="Post Image">
+        <div class="post-content">
+            <div class="post-details">
+                <p class="post-title">标题1</p>
+                <p class="post-author">用户1</p>
+            </div>
+            <div class="like-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="post" data-title="标题1" data-author="用户1" data-content="这是正文内容1" data-image="s5.jpg" data-date="2023-08-22">
+        <img src="s5.jpg" alt="Post Image">
+        <div class="post-content">
+            <div class="post-details">
+                <p class="post-title">标题1</p>
+                <p class="post-author">用户1</p>
+            </div>
+            <div class="like-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <!-- 可以复制上述代码块来添加更多帖子 -->
+</div>
+
+<div class="nav-bar">
+    <div class="active">发现</div>
+    <div>关注</div>
+    <div>我的</div>
+</div>
+
+<div class="details" id="details">
+    <div class="details-content">
+        <p id="details-author">详情作者</p>
+        <img id="details-image" src="" alt="Detail Image">
+        <h2 id="details-title">详情标题</h2>
+        <p id="details-content">详情正文</p>
+        <p class="details-date" id="details-date">发布日期</p>
+        <button class="close-button" id="close-button">关闭</button>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.post').forEach(post => {
+        post.addEventListener('click', () => {
+            const title = post.getAttribute('data-title');
+            const author = post.getAttribute('data-author');
+            const content = post.getAttribute('data-content');
+            const image = post.getAttribute('data-image');
+            const date = post.getAttribute('data-date');
+            document.getElementById('details-title').textContent = title;
+            document.getElementById('details-author').textContent = author;
+            document.getElementById('details-content').textContent = content;
+            document.getElementById('details-image').src = image;
+            document.getElementById('details-date').textContent = `发布日期: ${date}`;
+            document.getElementById('details').style.display = 'flex';
+        });
+    });
+
+    document.getElementById('close-button').addEventListener('click', () => {
+        document.getElementById('details').style.display = 'none';
+    });
+
+    document.querySelectorAll('.like-button').forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.stopPropagation();
+            button.classList.toggle('liked');
+            const span = button.querySelector('span');
+        });
+    });
+</script>
+
+</body>
+</html>
